@@ -1,14 +1,12 @@
 use std::path::PathBuf;
 
-use home;
-
 pub fn assets_path() -> PathBuf {
     let mut cargo_path = home::cargo_home().expect("Could not find cargo home");
     cargo_path.push("git");
     cargo_path.push("checkouts");
     //find all the directories in the assets folder that start with "kenney_assets_v2"
     let all_git_checkout_dirs = cargo_path.read_dir().expect(&format!("Could not read {:?}", cargo_path));
-    let mut kenney_git_checkout_dirs = all_git_checkout_dirs.filter(|dir| {
+    let kenney_git_checkout_dirs = all_git_checkout_dirs.filter(|dir| {
         let dir = dir.as_ref().expect("Could not read dir");
         let name = dir.file_name();
         let name = name.to_str().expect("Could not convert dir name to str");
