@@ -36,6 +36,10 @@ pub fn assets_path() -> PathBuf {
     assets_path
 }
 
+pub fn assets_path_str() -> String {
+    assets_path().to_str().expect("Could not convert assets path to str").to_string()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
